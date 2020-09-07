@@ -23,15 +23,13 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react",
-    "baseUrl": ".",
-    "paths": {
-      "@cccfrontend/*": [
-        "src/*"
-      ]
-    }
+    "baseUrl": "."
   },
   "exclude": [
     "node_modules",
-    "plugins",
+    "plugins"
+  ],
+  "include": [
+    "src"
   ]
 }

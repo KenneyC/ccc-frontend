@@ -1,14 +1,14 @@
 import React from 'react';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
-import logo from './logo.svg';
+import { ConstructionItems } from './pages/construction-items';
 import './App.scss';
 
-function App() {
+export const App: React.FC = () => {
 	return (
-		<Router >
-
+		<Router>
+			<Route path="/">
+				<ConstructionItems />
+			</Route>
 		</Router>
 	);
-}
-
-export default App;
+};
