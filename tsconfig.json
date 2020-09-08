@@ -23,7 +23,7 @@
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react",
-    "baseUrl": "."
+    "baseUrl": "./"
   },
   "exclude": [
     "node_modules",
