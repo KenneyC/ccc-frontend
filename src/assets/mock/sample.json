@@ -1,0 +1,67 @@
+
+{
+	“constructionItems”: [
+		{
+			"Text": "Garage",
+			"Type": "Construction Item",
+			“Children” : [
+				{
+					“Text”: “General Questions”,
+					"Type": "Section",
+					“Children”: [
+						{
+							“Text”: “What is the purpose of this building”,
+							"Type": "Question",
+							“Children”: [
+								{
+									“Text”: “Residential”,
+									"Type": "Answer"
+									“Children”: [
+										{
+											"Text": "Building Code A: Importance Level",
+											"Type": "Sub-Question",
+											"Children": [
+												{
+													"Text": "1",
+													"Type": "FinalAnswer"
+												}
+											]
+										}
+									]
+								},
+								{
+									“Text”: “Commercial”,
+									“Questions”: [
+										{
+											"Text": "Building Code A: Importance Level",
+											"Answers": [
+												{
+													"Text": "1",
+													"Type": "FinalAnswer"
+												},
+												{
+													"Text": "2",
+													"Type": "FinalAnswer"
+												},
+												{
+													"Text": "3",
+													"Type": "FinalAnswer",
+													"ExtraAnswer": "Please provide Compliance Schedule"
+												},
+												{
+													"Text": "4",
+													"Type": "FinalAnswer",
+													"ExtraAnswer": "Please provide Compliance Schedule"
+												}
+											]
+										}
+									]
+								}
+							]
+						}
+					]
+				}
+			]
+		}
+	]
+}
