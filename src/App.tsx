@@ -2,7 +2,7 @@ import React from 'react';
 import { Provider } from 'react-redux';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 import { store } from './core/store';
-import { ConstructionItems } from './pages/construction-items';
+import { Start } from './pages/start';
 import './App.scss';
 
 export const App: React.FC = () => {
@@ -10,7 +10,7 @@ export const App: React.FC = () => {
 		<Provider store={store}>
 			<Router>
 				<Route path="/">
-					<ConstructionItems />
+					<Start />
 				</Route>
 			</Router>
 		</Provider>

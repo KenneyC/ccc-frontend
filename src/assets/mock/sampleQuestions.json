@@ -1,37 +1,37 @@
 
 {
-	“constructionItems”: [
+	"constructionItems": [
 		{
-			"Text": "Garage",
-			"Type": "Construction Item",
-			“Children” : [
+			"text": "Garage",
+			"type": "Construction Item",
+			"children" : [
 				{
-					“Text”: “General Questions”,
-					"Type": "Section",
-					“Children”: [
+					"text": "General Questions",
+					"type": "Section",
+					"children": [
 						{
-							“Text”: “What is the purpose of this building”,
-							"Type": "Question",
-							“Children”: [
+							"text": "What is the purpose of this building",
+							"type": "Question",
+							"children": [
 								{
-									“Text”: “Residential”,
-									"Type": "Answer"
-									“Children”: [
+									"text": "Residential",
+									"type": "Answer",
+									"children": [
 										{
-											"Text": "Building Code A: Importance Level",
-											"Type": "Sub-Question",
-											"Children": [
+											"text": "Building Code A: Importance Level",
+											"type": "Sub-Question",
+											"children": [
 												{
-													"Text": "1",
-													"Type": "FinalAnswer"
+													"text": "1",
+													"type": "FinalAnswer"
 												}
 											]
 										}
 									]
 								},
 								{
-									“Text”: “Commercial”,
-									“Questions”: [
+									"text": "Commercial",
+									"questions": [
 										{
 											"Text": "Building Code A: Importance Level",
 											"Answers": [

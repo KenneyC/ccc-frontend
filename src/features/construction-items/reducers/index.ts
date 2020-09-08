@@ -3,7 +3,7 @@ import { APPEND_TO_CONSTRUCTION_ITEMS, REMOVE_FROM_CONSTRUCTION_ITEMS } from '..
 import { ConstructionItemState, ConstructionItemAction } from '../types';
 
 const initialState: ConstructionItemState = {
-	constructionItems: [],
+	selected: [],
 };
 
 const appendToConstructionItems = (
@@ -11,7 +11,7 @@ const appendToConstructionItems = (
 	action: ConstructionItemAction
 ) => {
 	const newState: ConstructionItemState = cloneDeep(state);
-	newState.constructionItems.push(action.payload);
+	newState.selected.push(action.payload);
 
 	return newState;
 };
@@ -21,7 +21,11 @@ const removeFromConstructionItems = (
 	action: ConstructionItemAction
 ) => {
 	const newState: ConstructionItemState = cloneDeep(state);
-	remove(newState.constructionItems, action.payload);
+	remove(newState.selected, (constructionItem: string) => {
+		return constructionItem === action.payload
+	});
+
+	console.log(newState);
 
 	return newState;
 };

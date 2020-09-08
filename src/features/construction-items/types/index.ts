@@ -1,5 +1,5 @@
 export interface ConstructionItemState {
-	constructionItems: string[];
+	selected: string[];
 }
 
 export interface ConstructionItemAction {

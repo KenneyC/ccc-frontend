@@ -12,7 +12,7 @@ export const appendToConstructionItems = (payload: string): ConstructionItemActi
 
 export const removeFromConstructionItems = (payload: string): ConstructionItemAction => {
 	return {
-		type: APPEND_TO_CONSTRUCTION_ITEMS,
+		type: REMOVE_FROM_CONSTRUCTION_ITEMS,
 		payload,
 	};
 };
