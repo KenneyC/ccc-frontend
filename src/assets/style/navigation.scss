@@ -1,0 +1,9 @@
+.side-bar-wrapper {
+	display: flex;
+	min-width: 15%;
+	background-color: var(--tertiary-dark);
+	color: white;
+	font-size: var(--small-text);
+	flex-direction: column;
+	justify-content: center;
+}

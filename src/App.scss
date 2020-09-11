@@ -1,3 +1,12 @@
+body, .main-body, #root {
+  height: 100vh;
+}
+
+.main-body {
+  display: flex;
+  width: 100vw;
+}
+
 .App {
   text-align: center;
 }

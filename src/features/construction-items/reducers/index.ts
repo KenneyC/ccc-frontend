@@ -22,10 +22,8 @@ const removeFromConstructionItems = (
 ) => {
 	const newState: ConstructionItemState = cloneDeep(state);
 	remove(newState.selected, (constructionItem: string) => {
-		return constructionItem === action.payload
+		return constructionItem === action.payload;
 	});
-
-	console.log(newState);
 
 	return newState;
 };

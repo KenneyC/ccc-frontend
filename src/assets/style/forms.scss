@@ -1,0 +1,18 @@
+.construction-items {
+
+	&-wrapper {
+		padding: 0 16px;
+		display: flex;
+		flex-direction: column;
+		align-items: center;
+		min-width: 550px;
+		min-height: 70vh;
+		max-height: 70vh;
+		overflow: scroll; 
+	}
+
+	&-title {
+		font-size: var(--x-large-text);
+	}
+	
+}

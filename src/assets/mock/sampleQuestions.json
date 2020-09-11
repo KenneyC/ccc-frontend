@@ -2,8 +2,8 @@
 {
 	"constructionItems": [
 		{
-			"text": "Garage",
-			"type": "Construction Item",
+			"text": "garage",
+			"type": "construction Item",
 			"children" : [
 				{
 					"text": "General Questions",
