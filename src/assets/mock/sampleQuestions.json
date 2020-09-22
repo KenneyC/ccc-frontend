@@ -10,7 +10,7 @@
 					"type": "Section",
 					"children": [
 						{
-							"text": "What is the purpose of this building",
+							"text": "What is the purpose of this building?",
 							"type": "Question",
 							"children": [
 								{
@@ -31,31 +31,313 @@
 								},
 								{
 									"text": "Commercial",
-									"questions": [
+									"type": "Answer",
+									"children": [
 										{
-											"Text": "Building Code A: Importance Level",
-											"Answers": [
+											"text": "Building Code A: Importance Level",
+											"type": "Sub-Question",
+											"children": [
 												{
-													"Text": "1",
-													"Type": "FinalAnswer"
+													"text": "1",
+													"type": "FinalAnswer"
 												},
 												{
-													"Text": "2",
-													"Type": "FinalAnswer"
+													"text": "2",
+													"type": "FinalAnswer"
 												},
 												{
-													"Text": "3",
-													"Type": "FinalAnswer",
+													"text": "3",
+													"type": "FinalAnswer",
 													"ExtraAnswer": "Please provide Compliance Schedule"
 												},
 												{
-													"Text": "4",
-													"Type": "FinalAnswer",
+													"text": "4",
+													"type": "FinalAnswer",
 													"ExtraAnswer": "Please provide Compliance Schedule"
 												}
 											]
 										}
 									]
+								}
+							]
+						}
+					]
+				},
+				{
+					"text": "Building Code B1 Structure",
+					"type": "Section", 
+					"children": [
+						{
+							"text": "What is the mean of complaince of Wall framing?",
+							"type": "Question",
+							"children": [
+								{
+									"text": "Acceptable solution",
+									"type": "FinalAnswer"
+								},
+								{
+									"text": "Alternative solution",
+									"type": "FinalAnswer"
+								}
+							]
+						},
+						{
+							"text": "Mean of compliance of Footing?",
+							"type": "Question",
+							"children": [
+								{
+									"text": "Concrete strip",
+									"type": "FinalAnswer"
+								},
+								{
+									"text": "Concrete slab",
+									"type": "Answer",
+									"children": [
+										{
+											"text": "Is it an acceptable or alternate solution?",
+											"type": "Question",
+											"children": [
+												{
+													"text": "Acceptable solution",
+													"type": "FinalAnswer"
+												},
+												{
+													"text": "Alternative solution",
+													"type": "FinalAnswer"
+												}
+											]
+										}
+									]
+								},
+								{
+									"text": "Pile foundation",
+									"type": "Answer",
+									"children": [
+										{
+											"text": "Is it an acceptable or alternate solution?",
+											"type": "Question",
+											"children": [
+												{
+													"text": "Acceptable solution",
+													"type": "FinalAnswer"
+												},
+												{
+													"text": "Alternative solution",
+													"type": "FinalAnswer"
+												}
+											]
+										}
+									]
+								}
+							]
+						},
+						{
+							"text": "What is the Mean of compliance of roof framing?",
+							"type": "Question",
+							"children": [
+								{
+									"text": "Acceptable solution",
+									"type": "FinalAnswer"
+								},
+								{
+									"text": "Alternative solution",
+									"type": "FinalAnswer"
+								}
+							]
+						}
+					]
+				},
+				{
+					"text": "Building Code B2 Durability",
+					"type": "Section", 
+					"children": [ 
+						{
+							"text": "What is the concrete strength in this project?",
+							"type": "Question",
+							"children": [
+								{
+									"text": "17.5 MPa",
+									"type": "FinalAnswer"
+								},
+								{
+									"text": "20 MPa",
+									"type": "FinalAnswer"
+								},
+								{
+									"text": "25 MPa",
+									"type": "FinalAnswer"
+								}
+							]
+						},
+						{
+							"text": "What is the timber treatment in this project?",
+							"type": "Question",
+							"children": [
+								{
+									"text": "H1.2",
+									"type": "FinalAnswer"
+								},
+								{
+									"text": "H3.2",
+									"type": "FinalAnswer"
+								},
+								{
+									"text": "H5",
+									"type": "FinalAnswer"
+								}
+							]
+						}
+					]
+				},
+				{
+					"text": "Building Code D1 Surface water",
+					"type": "Section", 
+					"children": [
+						{
+							"text": "What is the type of outfalls connection?",
+							"type": "Question",
+							"children": [
+								{
+									"text": "Acceptable solution",
+									"type": "FinalAnswer"
+								},
+								{
+									"text": "Alternative solution",
+									"type": "FinalAnswer"
+								}
+							]
+						}
+					]
+				},
+				{
+					"text": "Building Code G10-11 Gas",
+					"type": "Section", 
+					"children": [
+						{
+							"text": "Is Gas being used as the energy source?",
+							"type": "Question",
+							"children": [
+								{
+									"text": "Yes",
+									"type": "Answer",
+									"children": [
+										{
+											"text": "Town or bottle supply?",
+											"type": "Question",
+											"children": [
+												{
+													"text": "Town supply",
+													"type": "FinalAnswer"
+												},
+												{
+													"text": "Bottle supply",
+													"type": "FinalAnswer"
+												}
+											]
+										}
+									]
+								},
+								{
+									"text": "No",
+									"type": "FinalAnswer"
+								}
+							]
+						}
+					]
+				},
+				{
+					"text": "Building Code G13 Foul Water/ Sanitary Plumbing and Drainage",
+					"type": "Section", 
+					"children": [
+						{
+							"text": "Plumbing: AS/NZS3500.2 or G13/AS1",
+							"type": "Question",
+							"children": [
+								{
+									"text": "AS/NZS3500.2",
+									"type": "FinalAnswer"
+								},
+								{
+									"text": "G13/AS1",
+									"type": "FinalAnswer"
+								}
+							]
+						},
+						{
+							"text": "Drainage: AS/NZS3500.2 or G13/AS2",
+							"type": "Question",
+							"children": [
+								{
+									"text": "AS/NZS3500.2",
+									"type": "FinalAnswer"
+								},
+								{
+									"text": "G13/AS2",
+									"type": "FinalAnswer"
+								}
+							]
+						}
+					]
+				},
+				{
+					"text": "Building Code H1 Energy Efficiency Provisions",
+					"type": "Section", 
+					"children": [
+						{
+							"text": "What is the mean of compliance?",
+							"type": "Question",
+							"children": [
+								{
+									"text": "H1/AS1",
+									"type": "Answer",
+									"children": [
+										{
+											"text": "What is the method?",
+											"type": "Question",
+											"children": [
+												{
+													"text": "Schedule method",
+													"type": "FinalAnswer"
+												},
+												{
+													"text": "Calculation method",
+													"type": "FinalAnswer"
+												},
+												{
+													"text": "Modelling method",
+													"type": "FinalAnswer"
+												}
+											]
+										}
+									]
+								},
+								{
+									"text": "NZS4218",
+									"type": "Answer",
+									"children": [
+										{
+											"text": "What is the method?",
+											"type": "Question",
+											"children": [
+												{
+													"text": "Schedule method",
+													"type": "FinalAnswer"
+												},
+												{
+													"text": "Calculation method",
+													"type": "FinalAnswer"
+												},
+												{
+													"text": "Modelling method",
+													"type": "FinalAnswer"
+												}
+											]
+										}
+									]
+								},
+								{
+									"text": "NZS4214",
+									"type": "FinalAnswer"
 								}
 							]
 						}

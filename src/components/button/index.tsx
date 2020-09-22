@@ -1,14 +1,16 @@
 import React from 'react';
 
 interface SimpleButtonProps {
+	text?: string;
 	onClick: () => void;
+	disabled?: boolean;
 }
 
 export const SimpleButton: React.FC<SimpleButtonProps> = (props: SimpleButtonProps) => {
-	const { onClick } = props;
+	const { text, onClick, disabled } = props;
 	return (
-		<button onClick={onClick} className="simple-button">
-			Submit and Continue
+		<button onClick={onClick} className="simple-button" disabled={disabled}>
+			{text}
 		</button>
 	);
 };

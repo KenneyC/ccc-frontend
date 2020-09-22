@@ -1,15 +1,23 @@
 import { cloneDeep } from 'lodash';
 import { GenericAction } from "src/core/store/types"
 import { QuestionnaireResponse } from 'src/services/api/types';
-import { AnswerInput, QuestionnaireFormState, QuestionnaireForm } from '../types';
-import { APPEND_QUSTIONNAIRE_DATA, UPDATE_QUESTIONNAIRE_ANSWER } from '../actions';
-import { translateToQuestionnaireData } from '../helper';
+import { AnswerInput, QuestionnaireFormState, SectionStatus, ResetSectionPayload } from '../types';
+import {
+	APPEND_QUSTIONNAIRE_DATA,
+	RESET_SECTION_ANSWER,
+	UPDATE_QUESTIONNAIRE_ANSWER,
+	UPDATE_SECTION_STATUS,
+	UPDATE_SELECTED_CONSTRUCTION_ITEM,
+} from '../actions';
+import { initialiseSections, translateToQuestionnaireData } from '../helper';
 
 export const initialState: QuestionnaireFormState = {
 	questionnaire: {
 		constructionItems: {},
 	},
+	selectedConstructionItem: '',
 	completedAnswers: {},
+	sectionStatuses: {},
 };
 
 const appendQuestionnaireData = (
@@ -18,7 +26,10 @@ const appendQuestionnaireData = (
 ) => {
 	const newState = cloneDeep(state);
 	const formData = translateToQuestionnaireData(action.payload);
+	const [sectionStatuses, completedAnswers] = initialiseSections(action.payload);
 	newState.questionnaire = formData;
+	newState.sectionStatuses = sectionStatuses;
+	newState.completedAnswers = completedAnswers;
 
 	return newState;
 };
@@ -28,8 +39,63 @@ const updateQuestionnaireAnswer = (
 	action: GenericAction<AnswerInput>
 ) => {
 	const newState = cloneDeep(state);
-	newState.completedAnswers[action.payload.constructionItem][action.payload.question].answer =
-		action.payload.answer;
+	const completedAnswers = newState.completedAnswers[action.payload.constructionItem];
+
+	if (completedAnswers[action.payload.section] !== undefined) {
+		newState.completedAnswers[action.payload.constructionItem][action.payload.section] = {
+			...newState.completedAnswers[action.payload.constructionItem][action.payload.section],
+			[action.payload.question]: {
+				answer: action.payload.answer,
+			},
+		};
+	} else {
+		newState.completedAnswers[action.payload.constructionItem] = {
+			...newState.completedAnswers[action.payload.constructionItem],
+			[action.payload.section]: {
+				[action.payload.question]: {
+					answer: action.payload.answer,
+				},
+			},
+		};
+	}
+
+	return newState;
+};
+
+const updateSelectedConstructionItem = (
+	state: QuestionnaireFormState,
+	action: GenericAction<string>
+) => {
+	const newState = cloneDeep(state);
+	newState.selectedConstructionItem = action.payload;
+
+	return newState;
+};
+
+const updateSectionStatus = (
+	state: QuestionnaireFormState,
+	action: GenericAction<SectionStatus>
+) => {
+	const newState = cloneDeep(state);
+	const sectionStatuses = newState.sectionStatuses[action.payload.constructionItem];
+
+	if (sectionStatuses !== undefined) {
+		sectionStatuses[action.payload.section] = action.payload.status;
+	} else {
+		newState.sectionStatuses[action.payload.constructionItem] = {
+			[action.payload.section]: action.payload.status,
+		};
+	}
+
+	return newState;
+};
+
+const resetSectionAnswer = (
+	state: QuestionnaireFormState,
+	action: GenericAction<ResetSectionPayload>
+) => {
+	const newState = cloneDeep(state);
+	newState.completedAnswers[action.payload?.constructionItem][action.payload?.section] = {};
 
 	return newState;
 };
@@ -43,6 +109,12 @@ export const startPageReducer = (
 			return appendQuestionnaireData(state, action);
 		case UPDATE_QUESTIONNAIRE_ANSWER:
 			return updateQuestionnaireAnswer(state, action);
+		case UPDATE_SELECTED_CONSTRUCTION_ITEM:
+			return updateSelectedConstructionItem(state, action);
+		case UPDATE_SECTION_STATUS:
+			return updateSectionStatus(state, action);
+		case RESET_SECTION_ANSWER:
+			return resetSectionAnswer(state, action);
 		default:
 			return state;
 	}

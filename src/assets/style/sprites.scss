@@ -1,7 +1,34 @@
 .arrow-sprite {
 	width: 15px;
 	height: 15px;
-	transform: rotate(-45deg);
 	border-right: 4px black solid;
 	border-bottom: 4px black solid;
+	transition: transform 0.4s ease-in-out;
+
+	&-rotated {
+		transform: rotate(-315deg);
+	}
+
+	&-up {
+		transform: rotate(-135deg);
+	}
+}
+
+.line {
+	height: 3px;
+	width: 10%;
+	margin: 0 10px 0 10px;
+	background-color: var(--highlight-background);
+
+	&-activated {
+		background-color: var(--highlight-primary);
+	}
+}
+
+.step {
+	color: black;
+
+	&-activated {
+		color: var(--highlight-primary)
+	}
 }

@@ -5,6 +5,8 @@ import {
 	Section,
 	Question,
 	Answer,
+	SectionStatuses,
+	CompletedAnswers,
 } from '../types';
 
 enum ObjectType {
@@ -32,7 +34,7 @@ export const translateToQuestionnaireData = (
 					answers: [],
 				};
 
-				if (child.children !== undefined && child?.children?.length > 0 ) {
+				if (child.children !== undefined && child?.children?.length > 0) {
 					// eslint-disable-next-line no-use-before-define
 					pushObject(
 						child.children,
@@ -85,4 +87,26 @@ export const translateToQuestionnaireData = (
 	});
 
 	return formData;
+};
+
+export const initialiseSections = (
+	responseData: QuestionnaireResponse
+): [SectionStatuses, CompletedAnswers] => {
+	const sectionStatuses: SectionStatuses = {};
+	const completedAnswers: CompletedAnswers = {};
+
+	responseData.constructionItems.forEach((constructionItem: QuestionnaireItem) => {
+		const initialSectionStatuses = {};
+		const initialCompletedAnswers = {};
+
+		constructionItem.children.forEach((question: QuestionnaireItem) => {
+			initialSectionStatuses[question.text] = false;
+			initialCompletedAnswers[question.text] = {};
+		});
+
+		sectionStatuses[constructionItem.text] = initialSectionStatuses;
+		completedAnswers[constructionItem.text] = initialCompletedAnswers;
+	});
+
+	return [sectionStatuses, completedAnswers];
 };
