@@ -1,11 +1,11 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { ItemButton } from './components/item-button';
-import { appendToConstructionItems, removeFromConstructionItems } from './actions';
 import { ApplicationState } from 'src/core/store/types';
+import { ItemButton } from './components/item-button';
+import { appendToSelectedConstructionItems, removeFromSelectedConstructionItems } from './actions';
 
 interface ConstructionItemsProps {
-	constructionItems: string[]
+	constructionItems: string[];
 }
 
 export const ConstructionItemsForm: React.FC<ConstructionItemsProps> = (
@@ -19,9 +19,9 @@ export const ConstructionItemsForm: React.FC<ConstructionItemsProps> = (
 
 	const constructionItemCallBack = (title: string) => {
 		if (checkConstructionItems.includes(title)) {
-			dispatch(removeFromConstructionItems(title));
+			dispatch(removeFromSelectedConstructionItems(title));
 		} else {
-			dispatch(appendToConstructionItems(title));
+			dispatch(appendToSelectedConstructionItems(title));
 		}
 	};
 

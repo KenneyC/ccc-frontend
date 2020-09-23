@@ -13,6 +13,11 @@ export interface QuestionnaireResponse {
 	constructionItems: QuestionnaireItem[];
 }
 
+export interface APIState {
+	loading: boolean;
+	text: string;
+}
+
 export enum QuestionnaireItemType {
 	ANSWER = 'answer',
 	QUESTION = 'question',

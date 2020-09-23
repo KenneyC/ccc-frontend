@@ -1,3 +1,4 @@
 export enum APIRoutes {
-	CONSTRUCTION_ITEMS = '/construction-items',
+	CONSTRUCTION_ITEMS_NAMES = '/constructionItemNames',
+	CONSTRUCTION_ITEMS_DATA = '/constructionItemsData',
 }

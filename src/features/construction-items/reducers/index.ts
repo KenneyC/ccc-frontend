@@ -1,14 +1,20 @@
 import { remove, cloneDeep } from 'lodash';
-import { APPEND_TO_CONSTRUCTION_ITEMS, REMOVE_FROM_CONSTRUCTION_ITEMS } from '../actions';
-import { ConstructionItemState, ConstructionItemAction } from '../types';
+import { GenericAction } from 'src/core/store/types';
+import {
+	APPEND_TO_CONSTRUCTION_ITEMS,
+	APPEND_TO_SELECTED_CONSTRUCTION_ITEMS,
+	REMOVE_FROM_SELECTED_CONSTRUCTION_ITEMS,
+} from '../actions';
+import { ConstructionItemState } from '../types';
 
 const initialState: ConstructionItemState = {
 	selected: [],
+	items: [],
 };
 
-const appendToConstructionItems = (
+const appendToSelectedConstructionItems = (
 	state: ConstructionItemState,
-	action: ConstructionItemAction
+	action: GenericAction<string>
 ) => {
 	const newState: ConstructionItemState = cloneDeep(state);
 	newState.selected.push(action.payload);
@@ -16,9 +22,9 @@ const appendToConstructionItems = (
 	return newState;
 };
 
-const removeFromConstructionItems = (
+const removeFromSelectedConstructionItems = (
 	state: ConstructionItemState,
-	action: ConstructionItemAction
+	action: GenericAction<string>
 ) => {
 	const newState: ConstructionItemState = cloneDeep(state);
 	remove(newState.selected, (constructionItem: string) => {
@@ -28,12 +34,24 @@ const removeFromConstructionItems = (
 	return newState;
 };
 
-export const constructionItemsReducer = (state = initialState, action: ConstructionItemAction) => {
+const appendToConstructionItems = (
+	state: ConstructionItemState,
+	action: GenericAction<string[]>
+) => {
+	const newState = cloneDeep(state);
+	newState.items = action.payload;
+
+	return newState;
+}
+
+export const constructionItemsReducer = (state = initialState, action: GenericAction<any>) => {
 	switch (action.type) {
+		case APPEND_TO_SELECTED_CONSTRUCTION_ITEMS:
+			return appendToSelectedConstructionItems(state, action);
+		case REMOVE_FROM_SELECTED_CONSTRUCTION_ITEMS:
+			return removeFromSelectedConstructionItems(state, action);
 		case APPEND_TO_CONSTRUCTION_ITEMS:
 			return appendToConstructionItems(state, action);
-		case REMOVE_FROM_CONSTRUCTION_ITEMS:
-			return removeFromConstructionItems(state, action);
 		default:
 			return state;
 	}

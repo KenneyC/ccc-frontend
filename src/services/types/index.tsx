@@ -31,3 +31,7 @@ export const Routes: RouteInfo = {
 export interface PageState {
 	currentPage: RouteNames;
 }
+
+export interface ConstructionItemDataRequestPayload {
+	constructionItems: string[];
+}

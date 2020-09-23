@@ -1,29 +1,33 @@
 import { APIRoutes } from './routes';
-import { isDev } from '../helper';
-import { ConstructionItems, QuestionnaireResponse } from './types';
-import mockConstructionData from '../../assets/mock/sampleCI.json';
-import mockQuestionaireData from '../../assets/mock/sampleQuestions.json';
+import { QuestionnaireResponse } from './types';
 
-export const getConstructionItems = async (): Promise<ConstructionItems> => {
-	if (isDev()) {
-		const responseData = await new Promise<Response>((resolve) =>
-			resolve(new Response(JSON.stringify(mockConstructionData)))
-		);
-		return responseData.json();
-	}
-	return {
-		constructionItems: [],
-	};
+export const getConstructionItems = async (): Promise<string[]> => {
+	const constructionItemResponse = await fetch(
+		`${process.env.REACT_APP_API_URL}${APIRoutes.CONSTRUCTION_ITEMS_NAMES}`,
+		{
+			method: 'GET',
+		}
+	);
+	const constructionItems = await constructionItemResponse.json();
+	return constructionItems;
 };
 
-export const submitAndGetQuestions = async (): Promise<QuestionnaireResponse> => {
-	if (isDev()) {
-		const responseData = await new Promise<Response>((resolve) =>
-			resolve(new Response(JSON.stringify(mockQuestionaireData)))
-		);
-		return responseData.json();
-	}
+export const submitAndGetQuestions = async (
+	selectedItems: string[]
+): Promise<QuestionnaireResponse> => {
+	const constructionItemDataResponse = await fetch(
+		`${process.env.REACT_APP_API_URL}${APIRoutes.CONSTRUCTION_ITEMS_DATA}`,
+		{
+			method: 'POST',
+			headers: {
+				'Content-Type': 'application/json',
+			},
+			body: JSON.stringify(selectedItems),
+		}
+	);
+
+	const constructionItemData = await constructionItemDataResponse.json();
 	return {
-		constructionItems: [],
+		constructionItems: constructionItemData,
 	};
 };

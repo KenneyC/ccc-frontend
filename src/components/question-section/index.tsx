@@ -69,6 +69,7 @@ export const QuestionSection: React.FC<QuestionSectionProps> = (props: QuestionS
 				answer: currentQuestion.answers[answerIndex].text,
 			};
 
+			// Go to sub queston
 			if (currentQuestion.answers[answerIndex].questions?.length) {
 				setQuestionStack([
 					...questionStack,
