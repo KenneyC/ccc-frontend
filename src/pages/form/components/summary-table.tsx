@@ -4,7 +4,12 @@ import { SimpleButton } from 'src/components/button';
 import { AnswerSummaryTable } from 'src/components/question-section/components/summary-table';
 import { ApplicationState } from 'src/core/store/types';
 
-export const SummaryTable: React.FC = () => {
+interface SummaryTableProps {
+	onClick: () => void;
+}
+
+export const SummaryTable: React.FC<SummaryTableProps> = (props: SummaryTableProps) => {
+	const { onClick } = props;
 	const completedAnswers = useSelector(
 		(state: ApplicationState) => state.questionnaire.completedAnswers
 	);
@@ -33,7 +38,7 @@ export const SummaryTable: React.FC = () => {
 					</div>
 				);
 			})}
-			<SimpleButton text="Confirm and Continue" onClick={() => {}} />
+			<SimpleButton text="Confirm and Continue" onClick={onClick} />
 		</div>
 	);
 };

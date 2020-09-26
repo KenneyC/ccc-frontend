@@ -1,10 +1,13 @@
 import React from 'react';
+import { Form } from 'src/features/form';
 import { Questionnaire } from 'src/pages/questionnaire';
+import { SelectConstructionItems } from 'src/pages/select-construction-items';
 import { Start } from '../../pages/start';
 
 export enum RouteNames {
 	START = '/',
 	QUESTIONNAIRE = '/questionnaire',
+	QUESTIONNAIRE_FORM = '/questionnaire/form',
 }
 
 interface RouteInfo {
@@ -24,7 +27,12 @@ export const Routes: RouteInfo = {
 	QUESTIONNAIRE: {
 		route: RouteNames.QUESTIONNAIRE,
 		name: '2. Questionnaire',
-		component: <Questionnaire />,
+		component: <SelectConstructionItems />,
+	},
+	QUESTIONNAIRE_FORM: {
+		route: RouteNames.QUESTIONNAIRE_FORM,
+		name: '3. Questionniare form',
+		component: <Form />,
 	},
 };
 

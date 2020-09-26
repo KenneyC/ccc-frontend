@@ -5,16 +5,14 @@ import { QuestionSection } from 'src/components/question-section';
 import { ApplicationState } from 'src/core/store/types';
 import { Section } from '../../pages/questionnaire/types';
 
-interface FormProps {
-	sections: Section;
-	onContinue: () => void;
-}
-
-export const Form: React.FC<FormProps> = (props: FormProps) => {
-	const { sections, onContinue } = props;
+export const Form: React.FC = () => {
 	const [sectionsCompleted, setSectionsCompleted] = useState<boolean>(false);
 	const selectedConstructionItem = useSelector(
 		(state: ApplicationState) => state.questionnaire.selectedConstructionItem
+	);
+	const sections = useSelector(
+		(state: ApplicationState) =>
+			state.questionnaire.questionnaire.constructionItems[selectedConstructionItem]
 	);
 	const sectionStatuses = useSelector(
 		(state: ApplicationState) => state.questionnaire.sectionStatuses[selectedConstructionItem]
@@ -30,7 +28,7 @@ export const Form: React.FC<FormProps> = (props: FormProps) => {
 	}, [sectionStatuses, setSectionsCompleted]);
 
 	return (
-		<div className="questionnaire-form-wrapper">
+		<div className="questionnaire-form-wrapper page">
 			<h2>
 				Questions for{' '}
 				{`${selectedConstructionItem
@@ -44,7 +42,7 @@ export const Form: React.FC<FormProps> = (props: FormProps) => {
 					selectedConstructionItem={selectedConstructionItem}
 				/>
 			))}
-			<SimpleButton text="Continue" onClick={onContinue} disabled={!sectionsCompleted} />
+			<SimpleButton text="Continue" onClick={() => {}} disabled={!sectionsCompleted} />
 		</div>
 	);
 };

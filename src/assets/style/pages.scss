@@ -1,5 +1,5 @@
 .page {
-	padding-left: 15%;
+	padding-left: 18%;
 }
 
 .start {
@@ -9,13 +9,19 @@
 		align-items: center;
 		justify-content: space-around;
 		height: 100%;
-		width: 85%;
+		width: 100%;
 	}
 }
 
 .questionnaire {
 	&-wrapper {
 		width: 100%;
+	}
+
+	&-button {
+		width: 20%;
+		display: flex;
+		justify-content: center;
 	}
 }
 
