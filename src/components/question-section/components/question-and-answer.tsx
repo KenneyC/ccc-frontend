@@ -1,6 +1,6 @@
 import React from 'react';
 import { SimpleButton } from 'src/components/button';
-import { Answer, Question } from 'src/pages/questionnaire/types';
+import { Answer, Question } from 'src/pages/form/types';
 
 interface QuestionProps {
 	onClick: (question: Question, answerIndex: number) => void;

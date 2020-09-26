@@ -2,7 +2,7 @@ import { combineReducers, createStore } from 'redux';
 import { composeWithDevTools } from 'redux-devtools-extension';
 import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage/session';
-import { startPageReducer } from 'src/pages/questionnaire/reducer';
+import { startPageReducer } from 'src/pages/form/reducer';
 import { pageReducer } from 'src/pages/reducer';
 import { apiReducer } from 'src/services/api/reducer';
 

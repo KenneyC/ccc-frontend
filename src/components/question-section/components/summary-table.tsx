@@ -2,7 +2,7 @@ import React from 'react';
 import { useSelector } from 'react-redux';
 import { SvgTab } from 'src/assets/icons/components/tab';
 import { ApplicationState } from 'src/core/store/types';
-import { CompletedAnswer } from 'src/pages/questionnaire/types';
+import { CompletedAnswer } from 'src/pages/form/types';
 
 interface AnswerSummaryTable {
 	selectedConstructionItem: string;

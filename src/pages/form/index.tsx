@@ -1,11 +1,15 @@
 import React, { useEffect, useState } from 'react';
-import { useSelector } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { SimpleButton } from 'src/components/button';
 import { QuestionSection } from 'src/components/question-section';
 import { ApplicationState } from 'src/core/store/types';
-import { Section } from '../../pages/questionnaire/types';
+import { useNavigator } from 'src/services/helper';
+import { RouteNames } from 'src/services/types';
+import { addSummaryData } from '../actions';
+import { SummaryType } from '../result-summary/types';
 
 export const Form: React.FC = () => {
+	const [navigate, dispatch] = [useNavigator(), useDispatch()];
 	const [sectionsCompleted, setSectionsCompleted] = useState<boolean>(false);
 	const selectedConstructionItem = useSelector(
 		(state: ApplicationState) => state.questionnaire.selectedConstructionItem
@@ -17,6 +21,19 @@ export const Form: React.FC = () => {
 	const sectionStatuses = useSelector(
 		(state: ApplicationState) => state.questionnaire.sectionStatuses[selectedConstructionItem]
 	);
+	const completedAnswers = useSelector(
+		(state: ApplicationState) => state.questionnaire.completedAnswers
+	);
+
+	const handleContinue = () => {
+		dispatch(
+			addSummaryData({
+				summaryData: completedAnswers,
+				type: SummaryType.CONSTRUCTION_ITEM,
+			})
+		);
+		navigate(RouteNames.QUSTIONNAIRE_SUMMARY);
+	};
 
 	useEffect(() => {
 		const statuses = Object.values(sectionStatuses);
@@ -42,7 +59,7 @@ export const Form: React.FC = () => {
 					selectedConstructionItem={selectedConstructionItem}
 				/>
 			))}
-			<SimpleButton text="Continue" onClick={() => {}} disabled={!sectionsCompleted} />
+			<SimpleButton text="Continue" onClick={handleContinue} disabled={!sectionsCompleted} />
 		</div>
 	);
 };

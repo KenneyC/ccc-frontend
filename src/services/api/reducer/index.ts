@@ -1,5 +1,5 @@
 import { cloneDeep } from 'lodash';
-import { ApplicationState, GenericAction } from "src/core/store/types";
+import { GenericAction } from "src/core/store/types";
 import { UPDATE_API_STATUS } from '../actions';
 import { APIState } from '../types';
 

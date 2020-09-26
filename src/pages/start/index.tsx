@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { getConstructionItems, submitAndGetQuestions } from 'src/services/api/index';
 import { QuestionnaireResponse } from 'src/services/api/types';
@@ -8,7 +8,7 @@ import { ApplicationState } from 'src/core/store/types';
 import { useAPIHelper } from 'src/services/api/hooks';
 import { appendToConstructionItems } from 'src/features/construction-items/actions';
 import { useNavigator } from '../../services/helper';
-import { appendQuestionnaireData } from '../questionnaire/actions';
+import { appendQuestionnaireData } from '../form/actions';
 import { RouteNames } from '../../services/types';
 
 export const Start: React.FC = () => {

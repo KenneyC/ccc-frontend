@@ -6,8 +6,8 @@ import {
 	resetSectionAnswer,
 	updateQuestionnaireAnswer,
 	updateSectionStatus,
-} from 'src/pages/questionnaire/actions';
-import { AnswerInput, Question, Section } from 'src/pages/questionnaire/types';
+} from 'src/pages/form/actions';
+import { AnswerInput, Question, Section } from 'src/pages/form/types';
 import { SimpleButton } from '../button';
 import { StepTracker } from '../step-tracker';
 import { QuestionAndAnswer } from './components/question-and-answer';
@@ -100,7 +100,7 @@ export const QuestionSection: React.FC<QuestionSectionProps> = (props: QuestionS
 				setCurrentQuestionNumber(0);
 			} else if (currentQuestions[currentQuestionNumber + 1] !== undefined) {
 				setCurrentQuestionNumber(currentQuestionNumber + 1);
-				if (questionStack.length == 1) {
+				if (questionStack.length === 1) {
 					const incrementNewStack = cloneDeep(questionStack);
 					incrementNewStack[0].index += 1;
 					setQuestionStack(incrementNewStack);

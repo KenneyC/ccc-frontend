@@ -1,22 +1,25 @@
-import React from 'react';
-import { useSelector } from 'react-redux';
+import React, { useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
 import { SimpleButton } from 'src/components/button';
 import { AnswerSummaryTable } from 'src/components/question-section/components/summary-table';
-import { ApplicationState } from 'src/core/store/types';
+import { clearSummaryData } from 'src/pages/actions';
+import { getCompletedAnswers } from '../selectors';
 
 interface SummaryTableProps {
 	onClick: () => void;
 }
 
-export const SummaryTable: React.FC<SummaryTableProps> = (props: SummaryTableProps) => {
+export const AllItemSummary: React.FC<SummaryTableProps> = (props: SummaryTableProps) => {
 	const { onClick } = props;
-	const completedAnswers = useSelector(
-		(state: ApplicationState) => state.questionnaire.completedAnswers
-	);
+	const dispatch = useDispatch();
+	const completedAnswers = useSelector(getCompletedAnswers);
+
+	useEffect(() => {
+		return () => dispatch(clearSummaryData());
+	}, []);
 
 	return (
 		<div className="summary-table-wrapper">
-			<h1>Summary</h1>
 			{Object.keys(completedAnswers).map((constructionItem: string) => {
 				const sections = completedAnswers[constructionItem];
 				return (

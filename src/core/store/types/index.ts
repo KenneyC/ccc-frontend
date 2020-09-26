@@ -1,5 +1,5 @@
 import { ConstructionItemState } from "src/features/construction-items/types";
-import { QuestionnaireFormState } from "src/pages/questionnaire/types";
+import { QuestionnaireFormState } from "src/pages/form/types";
 import { APIState } from "src/services/api/types";
 import { PageState } from "src/services/types";
 

@@ -1,4 +1,3 @@
-import React from 'react';
 import { useDispatch } from 'react-redux';
 import { updateApiStatus } from '../actions';
 import { APIState } from '../types';
