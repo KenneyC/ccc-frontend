@@ -7,6 +7,8 @@ import {
 	Answer,
 	SectionStatuses,
 	CompletedAnswers,
+	CompletedAnswer,
+	AnswerInput,
 } from '../types';
 
 enum ObjectType {
@@ -109,4 +111,23 @@ export const initialiseSections = (
 	});
 
 	return [sectionStatuses, completedAnswers];
+};
+
+export const updateNestedAnswerTree = (
+	currentAnswer: CompletedAnswer,
+	answerInput: AnswerInput,
+	parentQuestions?: string[]
+) => {
+	const parentID = parentQuestions.pop();
+
+	if (parentID) {
+		const parent = currentAnswer.subQuestionAnswers[parentID];
+		updateNestedAnswerTree(parent, answerInput, parentQuestions);
+	} else {
+		const newCompletedAnswer: CompletedAnswer = {
+			answer: answerInput.answer,
+			subQuestionAnswers: {},
+		};
+		currentAnswer.subQuestionAnswers[answerInput.question] = newCompletedAnswer;
+	}
 };

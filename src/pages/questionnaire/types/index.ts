@@ -33,14 +33,20 @@ export interface AnswerInput {
 	section: string;
 	question: string;
 	answer: string;
+	parentQuestions?: string[];
+}
+
+export interface CompletedAnswer {
+	answer: string;
+	subQuestionAnswers: {
+		[key: string]: CompletedAnswer;
+	};
 }
 
 export interface CompletedAnswers {
 	[key: string]: {
 		[key: string]: {
-			[key: string]: {
-				answer: string;
-			};
+			[key: string]: CompletedAnswer;
 		};
 	};
 }

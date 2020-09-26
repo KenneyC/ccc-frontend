@@ -76,9 +76,18 @@
 		display: flex;
 		justify-content: space-evenly;
 	}
+
 	&-result-summary-table {
 		min-height: 150px;
 		padding: 20px;
+	}
+
+	&-result-summary-table-sub {
+		padding-left: 20px;
+	}
+
+	&-result-summary-table-icon {
+		margin-right: 20px;
 	}
 
 	&-result-summary-table-result {

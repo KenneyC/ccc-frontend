@@ -1,4 +1,4 @@
-import { cloneDeep } from 'lodash';
+import { cloneDeep, isEqual } from 'lodash';
 import React, { useCallback, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { ApplicationState } from 'src/core/store/types';
@@ -42,7 +42,7 @@ export const QuestionSection: React.FC<QuestionSectionProps> = (props: QuestionS
 		setQuestionStack([
 			{
 				questions: question.questions,
-				index: currentQuestionNumber,
+				index: 0,
 			},
 		]);
 		dispatch(
@@ -62,22 +62,38 @@ export const QuestionSection: React.FC<QuestionSectionProps> = (props: QuestionS
 
 	const handleAnswerClick = useCallback(
 		(currentQuestion: Question, answerIndex: number) => {
+			const parentQuestions: string[] = [];
+
+			questionStack.forEach((questionStackItem: QuestionStackItem, index: number) => {
+				if (
+					currentQuestion.text !==
+					questionStackItem.questions[questionStackItem.index].text
+				) {
+					parentQuestions.push(questionStackItem.questions[questionStackItem.index].text);
+				}
+			});
+
 			const answerInput: AnswerInput = {
 				constructionItem: selectedConstructionItem,
 				question: currentQuestion.text,
 				section: sectionName,
 				answer: currentQuestion.answers[answerIndex].text,
+				parentQuestions,
 			};
+
+			dispatch(updateQuestionnaireAnswer(answerInput));
 
 			// Go to sub queston
 			if (currentQuestion.answers[answerIndex].questions?.length) {
-				setQuestionStack([
-					...questionStack,
-					{
-						questions: currentQuestions,
-						index: currentQuestionNumber,
-					},
-				]);
+				if (!isEqual(questionStack[questionStack.length - 1].questions, currentQuestions)) {
+					setQuestionStack([
+						...questionStack,
+						{
+							questions: currentQuestions,
+							index: currentQuestionNumber,
+						},
+					]);
+				}
 				setCurrentQuestions(
 					currentQuestions[currentQuestionNumber].answers[answerIndex].questions
 				);
@@ -90,7 +106,9 @@ export const QuestionSection: React.FC<QuestionSectionProps> = (props: QuestionS
 					setQuestionStack(incrementNewStack);
 				}
 			} else if (
-				questionStack.length > 1 &&
+				questionStack.length > 0 &&
+				questionStack[questionStack.length - 1].index + 1 <
+					questionStack[questionStack.length - 1].questions.length &&
 				questionStack[questionStack.length - 1] !== undefined
 			) {
 				setCurrentQuestions(questionStack[questionStack.length - 1].questions);
@@ -98,9 +116,13 @@ export const QuestionSection: React.FC<QuestionSectionProps> = (props: QuestionS
 				const filterLastElement = questionStack.filter(
 					(stack, index) => index !== questionStack.length - 1
 				);
-				filterLastElement[filterLastElement.length - 1].index++;
+				if (filterLastElement.length) {
+					filterLastElement[filterLastElement.length - 1].index++;
+				}
 				setQuestionStack(filterLastElement);
 			} else {
+				setQuestionStack([]);
+				setCurrentQuestionNumber(0);
 				setCurrentQuestions([]);
 				dispatch(
 					updateSectionStatus({
@@ -110,10 +132,17 @@ export const QuestionSection: React.FC<QuestionSectionProps> = (props: QuestionS
 					})
 				);
 			}
-
-			dispatch(updateQuestionnaireAnswer(answerInput));
 		},
-		[currentQuestionNumber, setCurrentQuestionNumber, setCurrentQuestions, setQuestionStack]
+		[
+			currentQuestionNumber,
+			setCurrentQuestionNumber,
+			setCurrentQuestions,
+			setQuestionStack,
+			dispatch,
+			question.questions,
+			sectionName,
+			selectedConstructionItem,
+		]
 	);
 
 	return (

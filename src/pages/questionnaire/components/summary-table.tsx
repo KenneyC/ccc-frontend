@@ -1,6 +1,7 @@
 import React from 'react';
 import { useSelector } from 'react-redux';
 import { SimpleButton } from 'src/components/button';
+import { AnswerSummaryTable } from 'src/components/question-section/components/summary-table';
 import { ApplicationState } from 'src/core/store/types';
 
 export const SummaryTable: React.FC = () => {
@@ -22,16 +23,10 @@ export const SummaryTable: React.FC = () => {
 							return (
 								<div>
 									<h3>{section}</h3>
-									<table>
-										{Object.keys(sections[section]).map((question: string) => (
-											<tr>
-												<td>{question}</td>
-												<td className="summary-table-answer">
-													{sections[section][question].answer}
-												</td>
-											</tr>
-										))}
-									</table>
+									<AnswerSummaryTable
+										selectedConstructionItem={constructionItem}
+										sectionName={section}
+									/>
 								</div>
 							);
 						})}

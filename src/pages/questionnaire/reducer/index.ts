@@ -9,7 +9,11 @@ import {
 	UPDATE_SECTION_STATUS,
 	UPDATE_SELECTED_CONSTRUCTION_ITEM,
 } from '../actions';
-import { initialiseSections, translateToQuestionnaireData } from '../helper';
+import {
+	initialiseSections,
+	translateToQuestionnaireData,
+	updateNestedAnswerTree,
+} from '../helper';
 
 export const initialState: QuestionnaireFormState = {
 	questionnaire: {
@@ -39,23 +43,20 @@ const updateQuestionnaireAnswer = (
 	action: GenericAction<AnswerInput>
 ) => {
 	const newState = cloneDeep(state);
-	const completedAnswers = newState.completedAnswers[action.payload.constructionItem];
+	const completedAnswers =
+		newState.completedAnswers[action.payload.constructionItem][action.payload.section];
+	const initialParent = action.payload.parentQuestions.pop();
 
-	if (completedAnswers[action.payload.section] !== undefined) {
-		newState.completedAnswers[action.payload.constructionItem][action.payload.section] = {
-			...newState.completedAnswers[action.payload.constructionItem][action.payload.section],
-			[action.payload.question]: {
-				answer: action.payload.answer,
-			},
-		};
+	if (initialParent) {
+		updateNestedAnswerTree(
+			completedAnswers[initialParent],
+			action.payload,
+			action.payload.parentQuestions
+		);
 	} else {
-		newState.completedAnswers[action.payload.constructionItem] = {
-			...newState.completedAnswers[action.payload.constructionItem],
-			[action.payload.section]: {
-				[action.payload.question]: {
-					answer: action.payload.answer,
-				},
-			},
+		completedAnswers[action.payload.question] = {
+			answer: action.payload.answer,
+			subQuestionAnswers: {},
 		};
 	}
 

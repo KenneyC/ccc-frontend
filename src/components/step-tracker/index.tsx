@@ -10,8 +10,6 @@ interface StepTrackerProps {
 export const StepTracker: React.FC<StepTrackerProps> = (props: StepTrackerProps) => {
 	const { currentStep, maxStep, finished } = props;
 
-	console.log(currentStep);
-
 	const populateWithSteps = () => {
 		const steps = [];
 		for (let i = 0; i < maxStep; i++) {
