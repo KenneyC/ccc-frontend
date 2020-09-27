@@ -2,7 +2,6 @@ import { APIRoutes } from './routes';
 import { QuestionnaireResponse } from './types';
 
 export const getConstructionItems = async (): Promise<string[]> => {
-	console.log(`${process.env.REACT_APP_API_URL}${APIRoutes.CONSTRUCTION_ITEMS_NAMES}`);
 	const constructionItemResponse = await fetch(
 		`${process.env.REACT_APP_API_URL}${APIRoutes.CONSTRUCTION_ITEMS_NAMES}`,
 		{

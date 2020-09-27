@@ -12,7 +12,6 @@ export const useAPIHelper = (text?: string) => {
 		};
 		dispatch(updateApiStatus(newApiState));
 		const response = await apiFunction(...args);
-		console.log(response);
 		newApiState.loading = false;
 		dispatch(updateApiStatus(newApiState));
 		return response;

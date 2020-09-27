@@ -44,7 +44,6 @@ export const SelectConstructionItems: React.FC = () => {
 			const statuses = Object.values(sectionStatuses[constructionItem]);
 			return !statuses.includes(false);
 		});
-		console.log(completedStatuses);
 		completedStatuses.includes(false)
 			? setAllQuestionsCompleted(false)
 			: setAllQuestionsCompleted(true);
