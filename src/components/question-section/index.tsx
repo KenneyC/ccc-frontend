@@ -3,11 +3,12 @@ import React, { useCallback, useState } from 'react';
 import { useSelector, useDispatch } from 'react-redux';
 import { ApplicationState } from 'src/core/store/types';
 import {
+	appendPDFText,
 	resetSectionAnswer,
 	updateQuestionnaireAnswer,
 	updateSectionStatus,
 } from 'src/pages/form/actions';
-import { AnswerInput, Question, Section } from 'src/pages/form/types';
+import { AnswerInput, PDFTextPayload, Question, Section } from 'src/pages/form/types';
 import { SimpleButton } from '../button';
 import { StepTracker } from '../step-tracker';
 import { QuestionAndAnswer } from './components/question-and-answer';
@@ -63,6 +64,7 @@ export const QuestionSection: React.FC<QuestionSectionProps> = (props: QuestionS
 	const handleAnswerClick = useCallback(
 		(currentQuestion: Question, answerIndex: number) => {
 			const parentQuestions: string[] = [];
+			const pdfText = currentQuestion.answers[answerIndex].pdfText;
 
 			questionStack.forEach((questionStackItem: QuestionStackItem, index: number) => {
 				if (
@@ -82,6 +84,16 @@ export const QuestionSection: React.FC<QuestionSectionProps> = (props: QuestionS
 			};
 
 			dispatch(updateQuestionnaireAnswer(answerInput));
+
+			if (pdfText !== null && pdfText !== '' && pdfText !== undefined) {
+				console.log(pdfText);
+				const pdfTextPayload: PDFTextPayload = {
+					constructionItem: selectedConstructionItem,
+					section: sectionName,
+					pdfText,
+				};
+				dispatch(appendPDFText(pdfTextPayload));
+			}
 
 			// Go to sub queston
 			if (currentQuestion.answers[answerIndex].questions?.length) {

@@ -9,6 +9,7 @@ import {
 	CompletedAnswers,
 	CompletedAnswer,
 	AnswerInput,
+	PDFTexts,
 } from '../types';
 
 enum ObjectType {
@@ -50,6 +51,7 @@ export const translateToQuestionnaireData = (
 				newChild = {
 					text: child.text,
 					questions: [],
+					pdfText: child.pdfText
 				};
 
 				if (child.children !== undefined && child?.children.length > 0) {
@@ -93,24 +95,30 @@ export const translateToQuestionnaireData = (
 
 export const initialiseSections = (
 	responseData: QuestionnaireResponse
-): [SectionStatuses, CompletedAnswers] => {
+): [SectionStatuses, CompletedAnswers, PDFTexts] => {
 	const sectionStatuses: SectionStatuses = {};
 	const completedAnswers: CompletedAnswers = {};
+	const pdfTexts: PDFTexts = {};
 
 	responseData.constructionItems.forEach((constructionItem: QuestionnaireItem) => {
 		const initialSectionStatuses = {};
 		const initialCompletedAnswers = {};
+		const initialPDFTexts = {};
 
 		constructionItem.children.forEach((question: QuestionnaireItem) => {
 			initialSectionStatuses[question.text] = false;
 			initialCompletedAnswers[question.text] = {};
+			initialPDFTexts[question.text] = [];
 		});
 
 		sectionStatuses[constructionItem.text] = initialSectionStatuses;
 		completedAnswers[constructionItem.text] = initialCompletedAnswers;
+		pdfTexts[constructionItem.text] = initialPDFTexts;
 	});
 
-	return [sectionStatuses, completedAnswers];
+	console.log(pdfTexts);
+
+	return [sectionStatuses, completedAnswers, pdfTexts];
 };
 
 export const updateNestedAnswerTree = (

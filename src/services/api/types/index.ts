@@ -6,6 +6,7 @@ export interface QuestionnaireItem {
 	text: string;
 	type: string;
 	finalAnswer?: string;
+	pdfText?: string;
 	children?: QuestionnaireItem[];
 }
 
@@ -23,4 +24,9 @@ export enum QuestionnaireItemType {
 	QUESTION = 'question',
 	LEADING_QUESTION = 'leading-question',
 	FINAL_ANSWER = 'final-answer',
+}
+
+export interface PDFTextSubmitPayloadItem {
+	text: string;
+	children?: any[];
 }

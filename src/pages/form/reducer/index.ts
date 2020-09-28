@@ -1,8 +1,10 @@
 import { cloneDeep } from 'lodash';
 import { GenericAction } from "src/core/store/types"
 import { QuestionnaireResponse } from 'src/services/api/types';
-import { AnswerInput, QuestionnaireFormState, SectionStatus, ResetSectionPayload } from '../types';
+import { AnswerInput, QuestionnaireFormState, SectionStatus, ResetSectionPayload, PDFTextPayload } from '../types';
 import {
+	appendPDFText,
+	APPEND_PDF_TEXTS,
 	APPEND_QUSTIONNAIRE_DATA,
 	RESET_SECTION_ANSWER,
 	UPDATE_QUESTIONNAIRE_ANSWER,
@@ -22,6 +24,7 @@ export const initialState: QuestionnaireFormState = {
 	selectedConstructionItem: '',
 	completedAnswers: {},
 	sectionStatuses: {},
+	pdfTexts: {},
 };
 
 const appendQuestionnaireData = (
@@ -30,10 +33,11 @@ const appendQuestionnaireData = (
 ) => {
 	const newState = cloneDeep(state);
 	const formData = translateToQuestionnaireData(action.payload);
-	const [sectionStatuses, completedAnswers] = initialiseSections(action.payload);
+	const [sectionStatuses, completedAnswers, pdfText] = initialiseSections(action.payload);
 	newState.questionnaire = formData;
 	newState.sectionStatuses = sectionStatuses;
 	newState.completedAnswers = completedAnswers;
+	newState.pdfTexts = pdfText;
 
 	return newState;
 };
@@ -97,6 +101,16 @@ const resetSectionAnswer = (
 ) => {
 	const newState = cloneDeep(state);
 	newState.completedAnswers[action.payload?.constructionItem][action.payload?.section] = {};
+	newState.pdfTexts[action.payload?.constructionItem][action.payload?.section] = [];
+
+	return newState;
+};
+
+const appendPDFTexts = (state: QuestionnaireFormState, action: GenericAction<PDFTextPayload>) => {
+	const newState = cloneDeep(state);
+	newState.pdfTexts[action.payload.constructionItem][action.payload.section].push(
+		action.payload.pdfText
+	);
 
 	return newState;
 };
@@ -116,6 +130,8 @@ export const startPageReducer = (
 			return updateSectionStatus(state, action);
 		case RESET_SECTION_ANSWER:
 			return resetSectionAnswer(state, action);
+		case APPEND_PDF_TEXTS:
+			return appendPDFTexts(state, action);
 		default:
 			return state;
 	}

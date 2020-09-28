@@ -1,6 +1,6 @@
 import { GenericAction } from 'src/core/store/types';
 import { QuestionnaireResponse } from 'src/services/api/types';
-import { AnswerInput, SectionStatus, ResetSectionPayload } from '../types';
+import { AnswerInput, SectionStatus, ResetSectionPayload, PDFTextPayload } from '../types';
 
 export const APPEND_QUSTIONNAIRE_DATA = 'APPEND_QUSTIONNAIRE_DATA';
 
@@ -11,6 +11,8 @@ export const UPDATE_SELECTED_CONSTRUCTION_ITEM = 'UPDATE_SELECTED_CONSTRUCTION_I
 export const UPDATE_SECTION_STATUS = 'UPDATE_SECTION_STATUS';
 
 export const RESET_SECTION_ANSWER = 'RESET_SECTION_ANSWER';
+
+export const APPEND_PDF_TEXTS = 'APPEND_PDF_TEXTS';
 
 export const appendQuestionnaireData = (
 	payload: QuestionnaireResponse
@@ -47,6 +49,13 @@ export const resetSectionAnswer = (
 ): GenericAction<ResetSectionPayload> => {
 	return {
 		type: RESET_SECTION_ANSWER,
+		payload,
+	};
+};
+
+export const appendPDFText = (payload: PDFTextPayload): GenericAction<PDFTextPayload> => {
+	return {
+		type: APPEND_PDF_TEXTS,
 		payload,
 	};
 };

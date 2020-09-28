@@ -7,6 +7,7 @@ export interface Question {
 export interface Answer {
 	text: string;
 	questions?: Question[];
+	pdfText?: string;
 	finalAnswer?: string;
 }
 
@@ -62,9 +63,22 @@ export interface ResetSectionPayload {
 	section: string;
 }
 
+export interface PDFTextPayload {
+	constructionItem: string;
+	section: string;
+	pdfText: string;
+}
+
+export interface PDFTexts {
+	[key: string]: {
+		[key: string]: string[];
+	};
+}
+
 export interface QuestionnaireFormState {
 	questionnaire: QuestionnaireForm;
 	completedAnswers: CompletedAnswers;
 	selectedConstructionItem: string;
 	sectionStatuses: SectionStatuses;
+	pdfTexts: PDFTexts;
 }

@@ -14,7 +14,7 @@ export const ResultSummary = () => {
 		<div className="page">
 			<h1>Summary</h1>
 			{summaryData.type === SummaryType.ALL ? (
-				<AllItemSummary onClick={() => {}} />
+				<AllItemSummary />
 			) : (
 				<ConstructionItemSummary />
 			)}
