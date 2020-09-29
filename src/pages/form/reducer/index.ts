@@ -1,9 +1,14 @@
 import { cloneDeep } from 'lodash';
 import { GenericAction } from "src/core/store/types"
 import { QuestionnaireResponse } from 'src/services/api/types';
-import { AnswerInput, QuestionnaireFormState, SectionStatus, ResetSectionPayload, PDFTextPayload } from '../types';
 import {
-	appendPDFText,
+	AnswerInput,
+	QuestionnaireFormState,
+	SectionStatus,
+	ResetSectionPayload,
+	PDFTextPayload,
+} from '../types';
+import {
 	APPEND_PDF_TEXTS,
 	APPEND_QUSTIONNAIRE_DATA,
 	RESET_SECTION_ANSWER,

@@ -38,19 +38,18 @@ export const submitAndGetQuestions = async (
 
 export const submitQuestionnaire = async (pdfTexts: PDFTexts) => {
 	const pdfTextPayload = preparePDFTextPayload(pdfTexts);
-	console.log(pdfTextPayload);
 	const pdfResponse = await fetch(
 		`${process.env.REACT_APP_API_URL}${APIRoutes.SUBMIT_QUESTIONNAIRE}`,
 		{
-			method: 'GET',
+			method: 'POST',
 			headers: {
-				Accept: 'application/pdf',
-				'Content-Type': 'application/pdf',
+				Accept: 'application/zip',
+				'Content-Type': 'application/json',
 			},
+			body: JSON.stringify(pdfTextPayload),
 		}
 	);
 
 	const blob = await pdfResponse.blob();
-	console.log(blob);
-	saveAs(blob, 'application-checklist.pdf');
+	saveAs(blob, 'application-checklist.zip');
 };

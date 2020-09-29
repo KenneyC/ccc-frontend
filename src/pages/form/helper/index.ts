@@ -51,7 +51,7 @@ export const translateToQuestionnaireData = (
 				newChild = {
 					text: child.text,
 					questions: [],
-					pdfText: child.pdfText
+					pdfText: child.pdfText,
 				};
 
 				if (child.children !== undefined && child?.children.length > 0) {
@@ -115,8 +115,6 @@ export const initialiseSections = (
 		completedAnswers[constructionItem.text] = initialCompletedAnswers;
 		pdfTexts[constructionItem.text] = initialPDFTexts;
 	});
-
-	console.log(pdfTexts);
 
 	return [sectionStatuses, completedAnswers, pdfTexts];
 };
