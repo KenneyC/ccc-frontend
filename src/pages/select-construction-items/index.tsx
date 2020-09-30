@@ -5,7 +5,7 @@ import { PageButton } from 'src/components/page-button';
 import { updateSelectedConstructionItem } from 'src/pages/form/actions';
 import { useNavigator } from 'src/services/helper';
 import { RouteNames } from 'src/services/types';
-import { SimpleButton } from 'src/components/button';
+import { SimpleButton } from 'src/components/simple-button';
 import { addSummaryData } from '../actions';
 import { SummaryType } from '../result-summary/types';
 

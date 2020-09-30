@@ -9,7 +9,7 @@ import {
 	updateSectionStatus,
 } from 'src/pages/form/actions';
 import { AnswerInput, PDFTextPayload, Question, Section } from 'src/pages/form/types';
-import { SimpleButton } from '../button';
+import { SimpleButton } from '../simple-button';
 import { StepTracker } from '../step-tracker';
 import { QuestionAndAnswer } from './components/question-and-answer';
 import { AnswerSummaryTable } from './components/summary-table';

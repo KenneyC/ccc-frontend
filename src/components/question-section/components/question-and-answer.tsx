@@ -1,5 +1,5 @@
 import React from 'react';
-import { SimpleButton } from 'src/components/button';
+import { SimpleButton } from 'src/components/simple-button';
 import { Answer, Question } from 'src/pages/form/types';
 
 interface QuestionProps {

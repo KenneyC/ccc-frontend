@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getConstructionItems, submitAndGetQuestions } from 'src/services/api/index';
 import { QuestionnaireResponse } from 'src/services/api/types';
 import { ConstructionItemsForm } from 'src/features/construction-items';
-import { SimpleButton } from 'src/components/button';
+import { SimpleButton } from 'src/components/simple-button';
 import { ApplicationState } from 'src/core/store/types';
 import { useAPIHelper } from 'src/services/api/hooks';
 import { appendToConstructionItems } from 'src/features/construction-items/actions';

@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { SimpleButton } from 'src/components/button';
+import { SimpleButton } from 'src/components/simple-button';
 import { QuestionSection } from 'src/components/question-section';
 import { ApplicationState } from 'src/core/store/types';
 import { useNavigator } from 'src/services/helper';

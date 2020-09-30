@@ -1,6 +1,6 @@
 import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { SimpleButton } from 'src/components/button';
+import { SimpleButton } from 'src/components/simple-button';
 import { AnswerSummaryTable } from 'src/components/question-section/components/summary-table';
 import { ApplicationState } from 'src/core/store/types';
 import { clearSummaryData } from 'src/pages/actions';

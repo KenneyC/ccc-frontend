@@ -1,6 +1,6 @@
 import moment from 'moment';
 import { saveAs } from 'file-saver';
-import { CompletedAnswers, PDFTexts } from 'src/pages/form/types';
+import { PDFTexts } from 'src/pages/form/types';
 import { APIRoutes } from './routes';
 import { QuestionnaireResponse } from './types';
 import { preparePDFTextPayload } from './helpers';
