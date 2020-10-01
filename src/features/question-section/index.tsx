@@ -9,8 +9,8 @@ import {
 	updateSectionStatus,
 } from 'src/pages/form/actions';
 import { AnswerInput, PDFTextPayload, Question, Section } from 'src/pages/form/types';
-import { SimpleButton } from '../simple-button';
-import { StepTracker } from '../step-tracker';
+import { SimpleButton } from '../../components/simple-button';
+import { StepTracker } from '../../components/step-tracker';
 import { QuestionAndAnswer } from './components/question-and-answer';
 import { AnswerSummaryTable } from './components/summary-table';
 import { QuestionStackItem } from './types';
